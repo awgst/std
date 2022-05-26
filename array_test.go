@@ -21,7 +21,13 @@ func TestFirstFunction(t *testing.T) {
 	data := []int{1, 2, 3, 4}
 	a := arr.Init(&data)
 
-	assert.Equal(t, a.First(), data[0])
+	first, err := a.First()
+
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+
+	assert.Equal(t, first, data[0])
 }
 
 func TestLastFunction(t *testing.T) {
@@ -30,5 +36,23 @@ func TestLastFunction(t *testing.T) {
 	data := []int{1, 2, 3, 4}
 	a := arr.Init(&data)
 
-	assert.Equal(t, a.Last(), data[len(data)-1])
+	last, err := a.Last()
+
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+
+	assert.Equal(t, last, data[len(data)-1])
+}
+
+func TestIsEmptyFunction(t *testing.T) {
+	var arr Array[int]
+
+	var data []int
+	a := arr.Init(&data)
+
+	assert.True(t, a.IsEmpty())
+
+	data = []int{1, 2, 3}
+	assert.False(t, a.IsEmpty())
 }

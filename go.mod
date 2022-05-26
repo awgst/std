@@ -1,4 +1,4 @@
-module github.com/awgst/strukdat.git
+module github.com/awgst/strukdat
 
 go 1.18
 

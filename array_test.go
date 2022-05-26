@@ -56,3 +56,12 @@ func TestIsEmptyFunction(t *testing.T) {
 	data = []int{1, 2, 3}
 	assert.False(t, a.IsEmpty())
 }
+
+func TestIndexOfFunction(t *testing.T) {
+	var arr Array[int]
+	data := []int{1, 2, 3, 4, 5, 6, 7, 8}
+
+	a := arr.Init(&data)
+
+	assert.Equal(t, a.IndexOf(3), 2)
+}

@@ -1,6 +1,8 @@
 package array
 
-import "errors"
+import (
+	"errors"
+)
 
 type Array[T byte | int16 | int | int32 | int64 | string | float32 | float64] struct {
 	arrays *[]T
@@ -78,4 +80,14 @@ func (a Array[T]) Sum() T {
 	}
 
 	return total
+}
+
+func (a Array[T]) InArray(search T) bool {
+	for _, v := range *a.arrays {
+		if v == search {
+			return true
+		}
+	}
+
+	return false
 }

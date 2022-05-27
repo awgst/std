@@ -84,3 +84,13 @@ func TestSumFunction(t *testing.T) {
 
 	assert.Equal(t, a.Sum(), 10)
 }
+
+func TestInArrayFunction(t *testing.T) {
+	var arr Array[int]
+	data := []int{1, 2, 3, 4}
+
+	a := arr.Init(&data)
+
+	assert.True(t, a.InArray(3))
+	assert.False(t, a.InArray(10))
+}

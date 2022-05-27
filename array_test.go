@@ -75,3 +75,12 @@ func TestMinMaxFunction(t *testing.T) {
 	assert.Equal(t, a.Min(), 1)
 	assert.Equal(t, a.Max(), 8)
 }
+
+func TestSumFunction(t *testing.T) {
+	var arr Array[int]
+	data := []int{1, 2, 3, 4}
+
+	a := arr.Init(&data)
+
+	assert.Equal(t, a.Sum(), 10)
+}

@@ -70,3 +70,12 @@ func (a Array[T]) Max() T {
 
 	return max
 }
+
+func (a Array[T]) Sum() T {
+	var total T
+	for _, v := range *a.arrays {
+		total += v
+	}
+
+	return total
+}

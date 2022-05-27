@@ -65,3 +65,13 @@ func TestIndexOfFunction(t *testing.T) {
 
 	assert.Equal(t, a.IndexOf(3), 2)
 }
+
+func TestMinMaxFunction(t *testing.T) {
+	var arr Array[int]
+	data := []int{1, 2, 3, 4, 5, 6, 7, 8}
+
+	a := arr.Init(&data)
+
+	assert.Equal(t, a.Min(), 1)
+	assert.Equal(t, a.Max(), 8)
+}

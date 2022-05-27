@@ -2,7 +2,7 @@ package array
 
 import "errors"
 
-type Array[T comparable] struct {
+type Array[T byte | int16 | int | int32 | int64 | string | float32 | float64] struct {
 	arrays *[]T
 }
 
@@ -45,4 +45,28 @@ func (a Array[T]) IndexOf(search T) int {
 		}
 	}
 	return -1
+}
+
+func (a Array[T]) Min() T {
+	arr := *a.arrays
+	min := arr[0]
+	for _, v := range arr {
+		if a.Length() == 1 || v < min {
+			min = v
+		}
+	}
+
+	return min
+}
+
+func (a Array[T]) Max() T {
+	arr := *a.arrays
+	max := arr[0]
+	for _, v := range arr {
+		if a.Length() == 1 || v > max {
+			max = v
+		}
+	}
+
+	return max
 }

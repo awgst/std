@@ -94,3 +94,18 @@ func TestInArrayFunction(t *testing.T) {
 	assert.True(t, a.InArray(3))
 	assert.False(t, a.InArray(10))
 }
+
+func TestAppendAndUnsetFunction(t *testing.T) {
+	var arr Array[int]
+	data := []int{1, 2, 3, 4}
+
+	a := arr.Init(&data)
+
+	a.Append(5)
+
+	assert.Equal(t, data, []int{1, 2, 3, 4, 5})
+
+	a.Unset(2)
+
+	assert.Equal(t, data, []int{1, 2, 4, 5})
+}

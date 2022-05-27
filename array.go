@@ -91,3 +91,12 @@ func (a Array[T]) InArray(search T) bool {
 
 	return false
 }
+
+func (a Array[T]) Append(element T) {
+	*a.arrays = append(*a.arrays, element)
+}
+
+func (a Array[T]) Unset(index int) {
+	arr := *a.arrays
+	*a.arrays = append(arr[:index], arr[index+1:]...)
+}

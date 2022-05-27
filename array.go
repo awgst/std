@@ -19,7 +19,7 @@ func (a Array[T]) First() (T, error) {
 	first := *a.arrays
 	if a.IsEmpty() {
 		var t T
-		return t, errors.New("Initialize array can't be empty")
+		return t, errors.New("Initialize array is empty")
 	}
 	return first[0], nil
 }
@@ -28,7 +28,7 @@ func (a Array[T]) Last() (T, error) {
 	last := *a.arrays
 	if a.IsEmpty() {
 		var t T
-		return t, errors.New("Initialize array can't be empty")
+		return t, errors.New("Initialize array is empty")
 	}
 	return last[a.Length()-1], nil
 }

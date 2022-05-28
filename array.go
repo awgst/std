@@ -17,22 +17,20 @@ func (a Array[T]) Length() int {
 	return len(*a.arrays)
 }
 
-func (a Array[T]) First() (T, error) {
+func (a Array[T]) First() T {
 	first := *a.arrays
 	if a.IsEmpty() {
-		var t T
-		return t, errors.New("Initialize array is empty")
+		panic(errors.New("Initialize array is empty"))
 	}
-	return first[0], nil
+	return first[0]
 }
 
-func (a Array[T]) Last() (T, error) {
+func (a Array[T]) Last() T {
 	last := *a.arrays
 	if a.IsEmpty() {
-		var t T
-		return t, errors.New("Initialize array is empty")
+		panic(errors.New("Initialize array is empty"))
 	}
-	return last[a.Length()-1], nil
+	return last[a.Length()-1]
 }
 
 func (a Array[T]) IsEmpty() bool {
@@ -50,6 +48,10 @@ func (a Array[T]) IndexOf(search T) int {
 }
 
 func (a Array[T]) Min() T {
+	if a.IsEmpty() {
+		panic(errors.New("Initialize array is empty"))
+	}
+
 	arr := *a.arrays
 	min := arr[0]
 	for _, v := range arr {
@@ -62,6 +64,10 @@ func (a Array[T]) Min() T {
 }
 
 func (a Array[T]) Max() T {
+	if a.IsEmpty() {
+		panic(errors.New("Initialize array is empty"))
+	}
+
 	arr := *a.arrays
 	max := arr[0]
 	for _, v := range arr {

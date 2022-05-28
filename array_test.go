@@ -21,13 +21,16 @@ func TestFirstFunction(t *testing.T) {
 	data := []int{1, 2, 3, 4}
 	a := arr.Init(&data)
 
-	first, err := a.First()
-
-	if err != nil {
-		t.Fatal(err.Error())
-	}
+	first := a.First()
 
 	assert.Equal(t, first, data[0])
+
+	t.Run("Array is empty", func(t *testing.T) {
+		a = arr.Init(&[]int{})
+
+		assert.Panics(t, func() { a.First() })
+	})
+
 }
 
 func TestLastFunction(t *testing.T) {
@@ -36,13 +39,15 @@ func TestLastFunction(t *testing.T) {
 	data := []int{1, 2, 3, 4}
 	a := arr.Init(&data)
 
-	last, err := a.Last()
-
-	if err != nil {
-		t.Fatal(err.Error())
-	}
+	last := a.Last()
 
 	assert.Equal(t, last, data[len(data)-1])
+
+	t.Run("Array is empty", func(t *testing.T) {
+		a = arr.Init(&[]int{})
+
+		assert.Panics(t, func() { a.Last() })
+	})
 }
 
 func TestIsEmptyFunction(t *testing.T) {
@@ -74,6 +79,13 @@ func TestMinMaxFunction(t *testing.T) {
 
 	assert.Equal(t, a.Min(), 1)
 	assert.Equal(t, a.Max(), 8)
+
+	t.Run("Array is empty", func(t *testing.T) {
+		a = arr.Init(&[]int{})
+
+		assert.Panics(t, func() { a.Min() })
+		assert.Panics(t, func() { a.Max() })
+	})
 }
 
 func TestSumFunction(t *testing.T) {

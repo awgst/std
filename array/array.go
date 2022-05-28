@@ -8,16 +8,16 @@ type Array[T byte | int16 | int | int32 | int64 | string | float32 | float64] st
 	arrays *[]T
 }
 
-func (a Array[T]) Init(param *[]T) Array[T] {
+func (a *Array[T]) Init(param *[]T) Array[T] {
 	a.arrays = param
-	return a
+	return *a
 }
 
-func (a Array[T]) Length() int {
+func (a *Array[T]) Length() int {
 	return len(*a.arrays)
 }
 
-func (a Array[T]) First() T {
+func (a *Array[T]) First() T {
 	first := *a.arrays
 	if a.IsEmpty() {
 		panic(errors.New("Initialize array is empty"))
@@ -25,7 +25,7 @@ func (a Array[T]) First() T {
 	return first[0]
 }
 
-func (a Array[T]) Last() T {
+func (a *Array[T]) Last() T {
 	last := *a.arrays
 	if a.IsEmpty() {
 		panic(errors.New("Initialize array is empty"))
@@ -33,11 +33,11 @@ func (a Array[T]) Last() T {
 	return last[a.Length()-1]
 }
 
-func (a Array[T]) IsEmpty() bool {
+func (a *Array[T]) IsEmpty() bool {
 	return a.Length() == 0
 }
 
-func (a Array[T]) IndexOf(search T) int {
+func (a *Array[T]) IndexOf(search T) int {
 	arr := *a.arrays
 	for i := 0; i < len(arr); i++ {
 		if arr[i] == search {
@@ -47,7 +47,7 @@ func (a Array[T]) IndexOf(search T) int {
 	return -1
 }
 
-func (a Array[T]) Min() T {
+func (a *Array[T]) Min() T {
 	if a.IsEmpty() {
 		panic(errors.New("Initialize array is empty"))
 	}
@@ -63,7 +63,7 @@ func (a Array[T]) Min() T {
 	return min
 }
 
-func (a Array[T]) Max() T {
+func (a *Array[T]) Max() T {
 	if a.IsEmpty() {
 		panic(errors.New("Initialize array is empty"))
 	}
@@ -79,7 +79,7 @@ func (a Array[T]) Max() T {
 	return max
 }
 
-func (a Array[T]) Sum() T {
+func (a *Array[T]) Sum() T {
 	var total T
 	for _, v := range *a.arrays {
 		total += v
@@ -88,7 +88,7 @@ func (a Array[T]) Sum() T {
 	return total
 }
 
-func (a Array[T]) InArray(search T) bool {
+func (a *Array[T]) InArray(search T) bool {
 	for _, v := range *a.arrays {
 		if v == search {
 			return true
@@ -98,16 +98,16 @@ func (a Array[T]) InArray(search T) bool {
 	return false
 }
 
-func (a Array[T]) Append(element T) {
+func (a *Array[T]) Append(element T) {
 	*a.arrays = append(*a.arrays, element)
 }
 
-func (a Array[T]) Unset(index int) {
+func (a *Array[T]) Unset(index int) {
 	arr := *a.arrays
 	*a.arrays = append(arr[:index], arr[index+1:]...)
 }
 
-func (a Array[T]) QSort(low, high int, args ...string) {
+func (a *Array[T]) QSort(low, high int, args ...string) {
 	flag := "asc"
 	if len(args) > 0 {
 		flag = args[0]
@@ -120,7 +120,7 @@ func (a Array[T]) QSort(low, high int, args ...string) {
 	}
 }
 
-func (a Array[T]) partition(low, high int, flag string) int {
+func (a *Array[T]) partition(low, high int, flag string) int {
 	arr := *a.arrays
 	pivot := arr[high]
 	i := low
@@ -141,7 +141,7 @@ func (a Array[T]) partition(low, high int, flag string) int {
 	return i
 }
 
-func (a Array[T]) Unique() {
+func (a *Array[T]) Unique() {
 	exists := map[T]bool{}
 	arr := *a.arrays
 	tmp := []T{}

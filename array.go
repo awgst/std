@@ -134,3 +134,18 @@ func (a Array[T]) partition(low, high int, flag string) int {
 	arr[i], arr[high] = arr[high], arr[i]
 	return i
 }
+
+func (a Array[T]) Unique() {
+	exists := map[T]bool{}
+	arr := *a.arrays
+	tmp := []T{}
+
+	for _, v := range arr {
+		if exist := exists[v]; !exist {
+			exists[v] = true
+			tmp = append(tmp, v)
+		}
+	}
+
+	*a.arrays = tmp
+}

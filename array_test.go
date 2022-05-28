@@ -131,4 +131,26 @@ func TestQuickSortFunction(t *testing.T) {
 
 		assert.Equal(t, dataB, []int{9, 8, 6, 5, 5, 4, 3, 2, 2, 1})
 	})
+
+	t.Run("String Asc", func(t *testing.T) {
+		var arrStr Array[string]
+		dataString := []string{"aku", "aba", "abu", "bubu"}
+
+		str := arrStr.Init(&dataString)
+
+		str.QSort(0, str.Length()-1)
+
+		assert.Equal(t, dataString, []string{"aba", "abu", "aku", "bubu"})
+	})
+}
+
+func TestUniqueFunction(t *testing.T) {
+	var arr Array[int]
+	data := []int{1, 2, 2, 3, 3, 4, 4, 5}
+
+	a := arr.Init(&data)
+
+	a.Unique()
+
+	assert.Equal(t, data, []int{1, 2, 3, 4, 5})
 }

@@ -100,3 +100,37 @@ func (a Array[T]) Unset(index int) {
 	arr := *a.arrays
 	*a.arrays = append(arr[:index], arr[index+1:]...)
 }
+
+func (a Array[T]) QSort(low, high int, args ...string) {
+	flag := "asc"
+	if len(args) > 0 {
+		flag = args[0]
+	}
+
+	if low < high {
+		pivotIndex := a.partition(low, high, flag)
+		a.QSort(low, pivotIndex-1, flag)
+		a.QSort(pivotIndex+1, high, flag)
+	}
+}
+
+func (a Array[T]) partition(low, high int, flag string) int {
+	arr := *a.arrays
+	pivot := arr[high]
+	i := low
+	for j := low; j < high; j++ {
+		if flag == "desc" {
+			if arr[j] > pivot {
+				arr[i], arr[j] = arr[j], arr[i]
+				i++
+			}
+		} else {
+			if arr[j] < pivot {
+				arr[i], arr[j] = arr[j], arr[i]
+				i++
+			}
+		}
+	}
+	arr[i], arr[high] = arr[high], arr[i]
+	return i
+}

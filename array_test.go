@@ -109,3 +109,26 @@ func TestAppendAndUnsetFunction(t *testing.T) {
 
 	assert.Equal(t, data, []int{1, 2, 4, 5})
 }
+
+func TestQuickSortFunction(t *testing.T) {
+	var arr Array[int]
+
+	t.Run("Ascending", func(t *testing.T) {
+		data := []int{5, 3, 8, 2, 2, 4, 1, 5, 6, 9}
+		a := arr.Init(&data)
+
+		a.QSort(0, a.Length()-1)
+
+		assert.Equal(t, data, []int{1, 2, 2, 3, 4, 5, 5, 6, 8, 9})
+	})
+
+	t.Run("Descending", func(t *testing.T) {
+		dataB := []int{5, 3, 8, 2, 2, 4, 1, 5, 6, 9}
+
+		b := arr.Init(&dataB)
+
+		b.QSort(0, b.Length()-1, "desc")
+
+		assert.Equal(t, dataB, []int{9, 8, 6, 5, 5, 4, 3, 2, 2, 1})
+	})
+}

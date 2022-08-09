@@ -1,4 +1,4 @@
-module github.com/awgst/strukdat
+module github.com/awgst/std
 
 go 1.18
 
